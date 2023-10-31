@@ -2,32 +2,48 @@
 #include<fstream>
 #include<random>
 #include<chrono>
-#include<cstdlib>
+
+#include "sortings/merge_sort.hpp"
 
 using namespace std;
+using namespace std::chrono;
+
+
+template<typename Func>
+struct func_array {
+  static Func *const data[];
+};
+
+
+template<typename Func>
+Func *const func_array<Func>::data[] = { merge_sort };
 
 int main() {
-    ofstream fout;
-    ofstream fin;
+    //ofstream fout;
 
-    size_t testn[] = {3, 4, 5};
+    size_t testn[] = {4, 5, 15, 100, 4000, 50000};
+    vector<int> a;
     mt19937 gen(time(nullptr));
+    high_resolution_clock hrc;
 
-    fin.open("output.txt");
-    fin.close();
+
+    //fout.open("output.txt");
 
     for (auto& N : testn) {
-        fout.open("input.txt");
-        fout << N << endl;
-        
-        for (size_t i = 0; i != N; ++i) {
-            int x = gen();
-            fout << x << ' ';
-        }
-        fout << endl;
-        
-        system("./heap_sort");
-        fout.close();
+        a.resize(N);
+        for (auto& x : a) x = gen();
+
+        auto start = hrc.now();
+        func_array<void(std::vector<int>&)>::data[0](a);
+        auto stop = hrc.now();
+
+        bool ok = true;
+        for (int i = 1; i < N; ++i) ok &= (a[i - 1] <= a[i]);
+        cout << boolalpha << ok << ' ';
+
+        cout << duration_cast<microseconds>(stop - start).count() << endl;
+      
     }
+    //fout.close();
     return 0;
 }

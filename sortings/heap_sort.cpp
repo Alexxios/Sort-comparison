@@ -4,7 +4,7 @@
 #include<chrono>
 using namespace std;
 
-template<typename _Tp, typename _Compare = less<_Tp>>
+template<typename _Tp, typename _Compare = less<_Tp> >
 void sift_up(vector<_Tp>& heap, size_t i) {
     _Compare cmp;
     if (i > 1 && cmp(heap[i], heap[i >> 1])) {
@@ -14,7 +14,7 @@ void sift_up(vector<_Tp>& heap, size_t i) {
 }
 
 
-template<typename _Tp, typename _Compare = less<_Tp>>
+template<typename _Tp, typename _Compare = less<_Tp> >
 void sift_down(vector<_Tp>& heap, size_t i) {
     if (i + i >= heap.size()) return;
     _Compare cmp;

@@ -3,5 +3,8 @@
 !*.hpp
 !*/
 !*/*
+!Makefile
 !.gitignore
 !README.md
+
+test.cpp
