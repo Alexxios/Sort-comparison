@@ -12,6 +12,8 @@
         "vector": "cpp",
         "locale": "cpp",
         "random": "cpp",
-        "chrono": "cpp"
-    }
+        "chrono": "cpp",
+        "ios": "cpp"
+    },
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++"
 }
