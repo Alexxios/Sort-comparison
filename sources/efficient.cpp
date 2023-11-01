@@ -7,6 +7,7 @@
 #include "../sortings/merge_sort.hpp"
 #include "../sortings/quick_sort.hpp"
 #include "../sortings/heap_sort.hpp"
+#include "../sortings/skip_list_sort.hpp"
 
 using namespace std;
 using namespace std::chrono;
@@ -18,18 +19,18 @@ struct func_array {
 };
 
 template<typename Func>
-Func *const func_array<Func>::data[] = { merge_sort, quick_sort, heap_sort };
+Func *const func_array<Func>::data[] = { merge_sort, quick_sort, heap_sort, quick_sort_mod, skip_list_sort };
 
 
 int main() {
-    size_t testn[] = {60, 80, 100, 200, 300, 500, 1000, 2000, 5000, 15000, 30000, 100000};
+    size_t testn[] = {60, 80, 100, 200, 300, 500, 1000, 2000, 5000, 15000, 30000, 100000, 250000, 500000, 750000, 1000000};
     vector<int> a;
     mt19937 gen(time(nullptr));
     high_resolution_clock hrc;
 
     ofstream fout;
     fout.open("efficient_comparison.txt");
-    fout << "N;Merge Sort;Quick Sort;Heap Sort" << endl;
+    fout << "N;Merge Sort;Quick Sort;Heap Sort;Quick Sort Modification;Sort with Skip List" << endl;
 
     // T - number of runs for each array length
     #define T 10

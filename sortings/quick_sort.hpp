@@ -20,7 +20,6 @@ size_t partition(vector<_Tp>& a, size_t lb, size_t rb, _Tp x) {
     return i;
 }
 
-
 template<typename _Tp, typename _Compare = less<_Tp> >
 void quick_sort(vector<_Tp>& a, size_t lb, size_t rb) {
     if (lb + 1 >= rb) return;
@@ -95,45 +94,27 @@ _Tp order_stat(vector<_Tp>& a, size_t lb, size_t rb, size_t k) {
         ++i;
     } 
 
-    
+    _Tp x = (i == 1) ? median[i - 1] : order_stat<_Tp, _Compare>(median, 0, i, i / 2);
+
+    size_t p = partition<_Tp, _Compare>(a, lb, rb, x);
+
+    if (p == lb + k) return a[p];
+    if (p > lb + k) return order_stat<_Tp, _Compare>(a, lb, p, k);
+    else return order_stat<_Tp, _Compare>(a, p + 1, rb, lb + k - p - 1);
 }
 
 template<typename _Tp, typename _Compare = less<_Tp> >
-void quick_sort_mod(vector<_Tp>& a, vector<_Tp>& med, size_t lb, size_t rb) {
+void quick_sort_mod(vector<_Tp>& a, size_t lb, size_t rb) {
     if (lb + 1 >= rb) return;
 
-    
-    // TODO: partition
-    size_t sz = rb - lb;
-    for (size_t i = 0; i != sz; ++i) med[i] = a[lb + i];
+    _Tp x = order_stat<_Tp, _Compare>(a, lb, rb, (rb - lb) >> 1);
+    size_t p = partition<_Tp, _Compare>(a, lb, rb, x);
 
-    while (sz > 1) {
-        for (size_t i = 0; 5 * i < sz; ++i) {
-        }
-        
-
-        sz = (sz + 4) / 5;
-    }
-
-    _Compare cmp;
-    _Tp x = med[0];
-
-    size_t i = lb;
-    size_t j = rb - 1;
-    while (i <= j) {
-        while (cmp(a[i], x)) ++i;
-        while (cmp(x, a[j])) --j;
-        if (i >= j) break;
-        swap(a[i++], a[j--]);
-    }
-
-    quick_sort_mod(a, lb, i);
-    quick_sort_mod(a, i, rb);
+    quick_sort_mod<_Tp, _Compare>(a, lb, p);
+    quick_sort_mod<_Tp, _Compare>(a, p, rb);
 }
 
 template<typename _Tp, typename _Compare = less<_Tp> >
 void quick_sort_mod(vector<_Tp>& a) {
-    vector<_Tp> b(a);
-    quick_sort_mod<_Tp, _Compare>(a, b, 0, a.size());
+    quick_sort_mod<_Tp, _Compare>(a, 0, a.size());
 }
-

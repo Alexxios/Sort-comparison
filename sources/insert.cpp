@@ -27,8 +27,8 @@ string gen_string(size_t M, mt19937& gen) {
 }
 
 int main() {
-    size_t testn[] = {10, 20, 100, 1000};
-    size_t testm[] = {1, 2, 4, 8};
+    size_t testn[] = {10, 20, 40, 60, 80, 100, 200, 500, 750, 1000, 2000};
+    size_t testm[] = {1, 2, 5, 10, 50, 100, 200, 300, 500, 1000};
     vector<string> a;
     mt19937 gen(time(nullptr));
     high_resolution_clock hrc;
@@ -38,7 +38,7 @@ int main() {
     fout << "N;M;Insert Sort;Insert Sort with Binary Search" << endl;
 
     // T - number of runs for each array length
-    #define T 5
+    #define T 10
 
     for (auto& N : testn) {
         a.resize(N);

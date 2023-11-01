@@ -28,7 +28,9 @@
         "string_view": "cpp",
         "unordered_map": "cpp",
         "iosfwd": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "climits": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/clang++"
 }
