@@ -21,7 +21,7 @@ Func *const func_array<Func>::data[] = { insert_sort, merge_sort };
 
 
 int main() {
-    size_t testn[] = {5, 10, 15, 20, 30, 45, 60, 80, 100, 200, 300, 500, 1000, 2000, 5000, 8000};
+    size_t testn[] = {5, 10, 15, 20, 30, 45, 60, 80, 100, 200, 300, 500, 1000, 2000, 5000, 7000, 10000, 15000};
     vector<int> a;
     mt19937 gen(time(nullptr));
     high_resolution_clock hrc;

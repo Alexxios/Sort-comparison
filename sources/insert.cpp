@@ -38,7 +38,7 @@ int main() {
     fout << "N;M;Insert Sort;Insert Sort with Binary Search" << endl;
 
     // T - number of runs for each array length
-    #define T 10
+    #define T 20
 
     for (auto& N : testn) {
         a.resize(N);
