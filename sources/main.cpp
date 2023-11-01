@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 #include<fstream>
 #include<random>
 #include<chrono>
@@ -20,7 +21,7 @@ Func *const func_array<Func>::data[] = { insert_sort, merge_sort };
 
 
 int main() {
-    size_t testn[] = {5, 10, 15, 20, 30, 45, 60, 80, 100, 500, 1000, 2000, 5000};
+    size_t testn[] = {5, 10, 15, 20, 30, 45, 60, 80, 100, 200, 300, 500, 1000, 2000, 5000, 8000};
     vector<int> a;
     mt19937 gen(time(nullptr));
     high_resolution_clock hrc;
@@ -30,7 +31,7 @@ int main() {
     fout << "N;insert_sort;merge_sort" << endl;
 
     // T - number of runs for each array length
-    #define T 100
+    #define T 50
 
     for (auto& N : testn) {
         a.resize(N);
@@ -40,8 +41,9 @@ int main() {
 
             fout << N;
             for (auto f : func_array<void(vector<int>&)>::data) {
+                auto b(a);
                 auto start = hrc.now();
-                f(a);
+                f(b);
                 auto stop = hrc.now();
 
                 fout << ';' << fixed << duration<double, milli>(stop - start).count();
