@@ -82,11 +82,12 @@ _Tp order_stat(vector<_Tp>& a, size_t lb, size_t rb, size_t k) {
     vector<_Tp> median((n + 4) / 5);
 
     for (; 5 * i != n - n % 5; ++i) {
-            median[i] = median5(a[lb + 5 * i],
-                             a[lb + 5 * i + 1],
-                             a[lb + 5 * i + 2],
-                             a[lb + 5 * i + 3],
-                             a[lb + 5 * i + 4]);
+            median[i] = median5<_Tp, _Compare>(
+                a[lb + 5 * i],
+                a[lb + 5 * i + 1],
+                a[lb + 5 * i + 2],
+                a[lb + 5 * i + 3],
+                a[lb + 5 * i + 4]);
     }
     if (n % 5) {
         sort(a.begin() + lb + 5 * i, a.begin() + rb);

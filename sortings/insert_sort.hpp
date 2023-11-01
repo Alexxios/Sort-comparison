@@ -21,7 +21,7 @@ void insert_sort_bs(vector<_Tp>& a){
     _Compare cmp;
     for (size_t i = 1; i < a.size(); ++i) {
         _Tp x = a[i];
-        size_t l = 0, r = i + 1;
+        size_t l = 0, r = i;
 
         while (l + 1 < r) {
             size_t m = (l + r) >> 1;

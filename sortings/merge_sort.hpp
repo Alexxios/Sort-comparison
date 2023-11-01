@@ -42,5 +42,5 @@ void merge_sort(vector<_Tp>& a, vector<_Tp>& tmp, size_t lb, size_t rb) {
 template<typename _Tp, typename _Compare = less<_Tp> >
 void merge_sort(vector<_Tp>& a) {
     vector<_Tp> reserve(a.size());
-    merge_sort(a, reserve, 0, a.size());
+    merge_sort<_Tp, _Compare>(a, reserve, 0, a.size());
 }

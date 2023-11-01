@@ -27,8 +27,8 @@ int main() {
     high_resolution_clock hrc;
 
     ofstream fout;
-    fout.open("output.txt");
-    fout << "N;insert_sort;merge_sort" << endl;
+    fout.open("main_part.txt");
+    fout << "N;Insert Sort;Merge Sort" << endl;
 
     // T - number of runs for each array length
     #define T 50
